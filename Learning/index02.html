@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning About APIs</title>
+    <style>
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      .card {
+        width: 250px;
+        padding: 15px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+      }
+      button {
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container"></div>
+
+    <div id="secondCard" style="display: none">
+      <h2>secondCard</h2>
+      <p>This replaced the first card</p>
+    </div>
+
+    <script>
+    //   async function getUsers() {
+    //     try {
+    //       let res = await fetch("https://jsonplaceholder.typicode.com/users");
+    //       if (!res.ok) {
+    //         throw new Error("API Error");
+    //       }
+
+    //       let data = await res.json();
+    //       let container = document.querySelector(".container");
+
+    //       data.forEach((user) => {
+    //         container.innerHTML += `
+    //         <div class="card">
+    //             <h3>${user.name}</h3>
+    //             <p>${user.email}</p>
+    //             <button class="btn">Detail</button>
+    //         </div>   
+    //         `;
+    //       });
+    //       // -----make desipair card on click-------------->
+    //       //     document.addEventListener("click" , function(e)
+    //       // {
+    //       //     if(e.target.classList.contains("btn")){
+    //       //         let card = e.target.parentElement;
+    //       //         card.style.display = "none";
+    //       //     }
+    //       // })
+    //     } catch (error) {
+    //       console.log("Error", error);
+    //     }
+    //   }
+
+    //   getUsers();
+
+    //   document.addEventListener("click", function (e) {
+    //     if (e.target.classList.contains("btn")) {
+          
+    //      let card = e.target.parentElement;
+
+    //       card.innerHTML = `
+    //    <h3>Detail View</h3>
+    //   <p>This replaced the card</p>
+    //   <button class="back">Back</button>
+    //     `;
+    //     }
+    //      if(e.target.classList.contains("back"))
+    //   {
+    //     location.reload();
+    //   }
+    //   });
+
+    //  -----------Practice Section------------>
+
+    let container = document.querySelector(".container");
+    async  function getUser()
+    {
+        try {
+            let res  = await fetch("https://jsonplaceholder.typicode.com/users")
+            if(!res.ok)
+        {
+            throw new Error("API Error")
+        }
+
+        let data = await res.json();
+        data.forEach(user => 
+        {
+            container.innerHTML+= `
+            <div class="card">
+            <h3>${user.name}</h3>
+            <p>${user.email}</p>
+            <p>${user.phone}</p>
+            <button class="btn">Hide</button>
+            </div>
+            `
+        }
+        )
+        
+        }   
+        catch(error)
+        {
+            console.log("Error" , error)
+        }
+    }
+
+    getUser()
+    </script>
+  </body>
+</html>
